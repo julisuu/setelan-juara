@@ -1,0 +1,157 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+}
+
+.container {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo-nav-group {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  margin: 0;
+  margin-right: 30px;
+}
+
+.left-nav {
+  display: flex;
+}
+
+.left-nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.login-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 35px 45px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.login-button:hover {
+  background-color: #0069d9;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-button:active {
+  transform: translateY(-1px);
+}
+
+.login-button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 1%, transparent 1%) center/15000%;
+  opacity: 0;
+  transition: opacity 0.5s, background-size 0.5s;
+}
+
+.login-button:active::after {
+  background-size: 100%;
+  opacity: 1;
+  transition: 0s;
+}
+
+.main {
+  margin-top: 150px;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 25px;
+  margin-top: 15px;
+}
+
+.no-degrees {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.start-button {
+  margin-top: 20px;
+  padding: 40px 60px;  
+  border: 3px solid #32A8E6; 
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  font-size: 18px; 
+  font-weight: bold;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;  
+}
+
+.start-button:hover {
+  border-width: 4px;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.start-button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 1%, transparent 1%) center/15000%;
+  opacity: 0;
+  transition: opacity 0.5s, background-size 0.5s;
+}
+
+.start-button:active::after {
+  background-size: 100%;
+  opacity: 1;
+  transition: 0s;
+}
+
+.logo-image {
+  height: 45px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.highlight {
+  color: #32A8E6; 
+}

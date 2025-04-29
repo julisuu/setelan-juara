@@ -1,0 +1,27 @@
+{
+  "name": "setelan-juara",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julisuu/setelan-juara.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/julisuu/setelan-juara/issues"
+  },
+  "homepage": "https://github.com/julisuu/setelan-juara#readme",
+  "dependencies": {
+    "@google/genai": "^0.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}

@@ -12,7 +12,7 @@ const Result = () => {
           <h1 className="logo-text">SkillVoy</h1>
           <nav className="left-nav">
             <Link to="/" className="left-nav-link">Home</Link>
-            <Link to="/contact" className="left-nav-link">Our Team</Link>
+            <Link to="/team" className="left-nav-link">Our Team</Link> {/* Ubah properti to menjadi "/team" */}
           </nav>
         </div>
         <div className="user-info">

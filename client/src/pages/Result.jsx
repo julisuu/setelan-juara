@@ -1,12 +1,12 @@
 import React from 'react';
-import '../App.css';
+import '../Result.css';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const Result = () => {
   return (
-    <div className="container my-courses-container">
-      <header className="header my-courses-header">
+    <div className="my-courses-container">
+      <header className="my-courses-header">
         <div className="logo-nav-group">
           <img src={logo} alt="SkillVoy Logo" className="logo-image" />
           <h1 className="logo-text">SkillVoy</h1>

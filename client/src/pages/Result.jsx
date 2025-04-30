@@ -11,8 +11,8 @@ const Result = () => {
           <img src={logo} alt="SkillVoy Logo" className="logo-image" />
           <h1 className="logo-text">SkillVoy</h1>
           <nav className="left-nav">
-            <Link to="/" className="left-nav-link">About Us</Link>
-            <Link to="/contact" className="left-nav-link">Contact</Link>
+            <Link to="/" className="left-nav-link">Home</Link>
+            <Link to="/contact" className="left-nav-link">Our Team</Link>
           </nav>
         </div>
         <div className="user-info">

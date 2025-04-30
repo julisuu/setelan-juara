@@ -3,30 +3,82 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin: 0; /* Tambahkan ini untuk menghilangkan margin default body */
 }
 
-.result-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Be Vietnam Pro', sans-serif;
-  flex: 1;
-  width: 100%;
-  margin-top: 80px; /* Add space for the fixed header */
+.my-courses-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Membuat container utama mengisi sisa ruang */
 }
 
-.result-content {
-  padding: 20px 0;
+.my-courses-header {
+  position: fixed; /* Membuat header tetap di atas */
+  top: 0;        /* Menempelkan ke bagian paling atas */
+  left: 0;       /* Menempelkan ke sisi kiri */
+  width: 100%;    /* Membuat header selebar layar */
+  background-color: white; /* Atau warna latar belakang header Anda */
+  padding: 10px 20px; /* Sesuaikan padding sesuai kebutuhan */
+  z-index: 1000;     /* Memastikan header berada di atas konten lain */
+  /* Hapus atau komentari baris box-shadow berikut jika ada */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  border-bottom: none; /* Pastikan tidak ada border bawah */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
 
-.result-title {
+.logo-nav-group {
+  display: flex;
+  align-items: center;
+  width: auto
+}
+
+.logo-image {
+  height: 30px; /* Sesuaikan tinggi logo */
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 20px; /* Sesuaikan ukuran font logo */
+  margin-right: 20px;
+}
+
+.left-nav {
+  display: flex;
+}
+
+.left-nav-link {
+  text-decoration: none;
+  color: #333;
+  margin-left: 0px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  margin-left: 8px;
+  font-size: 20px;
+}
+
+.my-courses-main {
+  padding-top: 60px; /* Sesuaikan dengan tinggi header Anda (misalnya, tinggi padding atas + tinggi header) */
+  padding: 20px;     /* Padding untuk konten utama */
+  flex: 1;          /* Membuat main mengisi sisa ruang */
+}
+
+.my-courses-title {
   font-size: 32px;
   color: #333;
   margin-bottom: 30px;
   text-align: center;
 }
 
-.course-category {
+.course-details-container {
   margin-bottom: 30px;
   background: white;
   padding: 20px;
@@ -34,7 +86,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.category-title {
+.course-title {
   font-size: 22px;
   color: #32A8E6;
   margin-bottom: 15px;
@@ -42,47 +94,51 @@
   border-bottom: 1px solid #eee;
 }
 
-.course-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.course-description {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
 }
 
-.course-item {
+.course-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.course-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
   display: flex;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.course-item:last-child {
-  border-bottom: none;
+.course-number {
+  background-color: #32A8E6;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  font-size: 14px;
 }
 
-.course-checkbox {
-  margin-right: 15px;
-  width: 18px;
-  height: 18px;
-  accent-color: #32A8E6;
-  cursor: pointer;
-}
-
-.course-label {
+.course-card-content {
+  flex-grow: 1;
   font-size: 16px;
   color: #333;
-  cursor: pointer;
-  flex-grow: 1;
-  transition: color 0.2s;
 }
 
-.course-label:hover {
+.course-arrow {
   color: #32A8E6;
-}
-
-.result-footer {
-  text-align: center;
-  margin-top: 40px;
-  padding: 20px 0;
+  font-size: 20px;
+  margin-left: 10px;
 }
 
 .back-button {
@@ -102,18 +158,62 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive design */
+/* Responsive design (sesuaikan jika perlu) */
 @media (max-width: 768px) {
-  .result-container {
-    padding: 15px;
-    margin-top: 70px; /* Adjust for smaller screens */
+  .my-courses-header {
+    padding: 10px 15px;
   }
-  
-  .result-title {
+
+  .logo-text {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  .left-nav-link {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  .user-info span {
+    font-size: 14px;
+  }
+
+  .user-icon {
+    font-size: 18px;
+  }
+
+  .my-courses-main {
+    padding-top: 50px; /* Sesuaikan jika tinggi header berubah di mobile */
+    padding: 15px;
+  }
+
+  .my-courses-title {
     font-size: 28px;
   }
-  
-  .course-category {
+
+  .course-details-container {
     padding: 15px;
+  }
+
+  .course-title {
+    font-size: 20px;
+  }
+
+  .course-description {
+    font-size: 14px;
+  }
+
+  .course-cards {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .course-card-content {
+    font-size: 14px;
+  }
+
+  .back-button {
+    font-size: 14px;
+    padding: 10px 20px;
   }
 }

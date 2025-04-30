@@ -1,6 +1,6 @@
 import { useEffect, useState} from 'react';
-import logo from './assets/logo.png';
-import './App.css';
+import logo from '../assets/logo.png';
+import '../App.css';
 
 const Home = () => {
     return (

@@ -1,32 +1,76 @@
-import { useEffect, useState} from 'react';
-import logo from '../assets/logo.png';
+import React, { useState, useRef } from 'react'; // Import useRef
+import { Link } from 'react-router-dom';
 import '../App.css';
+import logo from '../assets/logo.png';
 
 const Home = () => {
-    return (
-      <div className="container">
-        <header className="header">
-          <div className="logo-nav-group">
-            <img src={logo} alt="SkillVoy Logo" className="logo-image" />
-            <h1 className="logo-text">SkillVoy</h1>
-            <nav className="left-nav">
-              <a href="#about">About Us</a>
-              <a href="#contact">Contact</a>
-            </nav>
-          </div>
-          <button className="login-button">Login</button>
-        </header>
-  
-        <main className="main">
-          <h2 className="title">
-            <span className="highlight">Voyage</span> To Your Dream Job
-          </h2>
-          <p className="subtitle">With AI Curated Learning Path</p>
-          <p className="no-degrees">No Degrees Needed</p>
-          <button className="start-button">Start Your Voyage</button>
-        </main>
-      </div>
-    );
+  const [activePage, setActivePage] = useState('home');
+  const aboutSectionRef = useRef(null); // Membuat ref untuk bagian About
+
+  const handleAboutClick = (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    setActivePage('about');
+    aboutSectionRef.current?.scrollIntoView({ behavior: 'smooth' }); // Scroll ke bagian About
   };
-  
-  export default Home;
+
+  return (
+    <div className="container">
+      <header className="header">
+        <div className="logo-nav-group">
+          <img src={logo} alt="SkillVoy Logo" className="logo-image" />
+          <h1 className="logo-text">SkillVoy</h1>
+          <nav className="left-nav">
+            <Link
+              to="/"
+              className={activePage === 'home' ? 'active' : ''}
+              onClick={() => setActivePage('home')}
+            >
+              Home
+            </Link>
+            <a 
+              href="#about" 
+              className={activePage === 'about' ? 'active' : ''}
+              onClick={handleAboutClick} 
+            >
+              About
+            </a>
+            <Link
+              to="/team"
+              className={activePage === 'team' ? 'active' : ''}
+              onClick={() => setActivePage('team')}
+            >
+              Our Team
+            </Link>
+          </nav>
+        </div>
+        <button className="login-button">Login</button>
+      </header>
+
+      <main className="main">
+        <h2 className="title">
+          <span className="highlight">Voyage</span> To Your Dream Job
+        </h2>
+        <p className="subtitle">With AI Curated Learning Path</p>
+        <p className="no-degrees">No Degrees Needed</p>
+        <button className="start-button">Start Your Voyage</button>
+      </main>
+
+      {/* About Section moved here */}
+      <div ref={aboutSectionRef} id="about" className="about-content">
+        <h1 className="about-title">What is SkillVoy?</h1>
+        <p className="about-description">
+          SkillVoy is an innovative platform designed to help you navigate your career journey
+          without the need for traditional degrees. Our AI-powered system curates personalized
+          learning paths tailored to your dream job, providing you with the exact skills and
+          knowledge you need to succeed in today's competitive market.
+        </p>
+        <p className="about-description">
+          Whether you're looking to switch careers, upskill, or start your professional journey,
+          SkillVoy provides the roadmap to get you there efficiently and effectively.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

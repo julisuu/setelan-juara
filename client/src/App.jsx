@@ -1,17 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/home';
-// Import other pages as needed
-// import AboutPage from './pages/about';
-// import ContactPage from './pages/contact';
+import Home from './pages/Home';
+import Team from './pages/Team';
+import Result from './pages/Result'; // Import komponen Result
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* Add other routes as needed */}
-        {/* <Route path="/about" element={<AboutPage />} /> */}
-        {/* <Route path="/contact" element={<ContactPage />} /> */}
+        <Route path="/team" element={<Team />} />
+        <Route path="/result" element={<Result />} /> {/* Tambahkan route untuk Result */}
       </Routes>
     </Router>
   );

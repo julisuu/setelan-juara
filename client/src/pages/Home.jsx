@@ -1,8 +1,14 @@
 import { useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../App.css';
 
 const Home = () => {
+    const navigate = useNavigate(); // Get the navigate function
+
+    const handleStartVoyageClick = () => {
+        navigate('/signup'); // Navigate to /signup on click
+    };
     return (
       <div className="container">
         <header className="header">
@@ -23,7 +29,7 @@ const Home = () => {
           </h2>
           <p className="subtitle">With AI Curated Learning Path</p>
           <p className="no-degrees">No Degrees Needed</p>
-          <button className="start-button">Start Your Voyage</button>
+          <button onClick={handleStartVoyageClick} className="start-button">Start Your Voyage</button>
         </main>
       </div>
     );

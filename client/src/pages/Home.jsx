@@ -1,16 +1,21 @@
-import React, { useState, useRef } from 'react'; // Import useRef
-import { Link } from 'react-router-dom';
-import '../App.css';
+import React, { useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import '../App.css';
 
 const Home = () => {
   const [activePage, setActivePage] = useState('home');
-  const aboutSectionRef = useRef(null); // Membuat ref untuk bagian About
+  const aboutSectionRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleAboutClick = (e) => {
-    e.preventDefault(); // Prevent default link behavior
+    e.preventDefault();
     setActivePage('about');
-    aboutSectionRef.current?.scrollIntoView({ behavior: 'smooth' }); // Scroll ke bagian About
+    aboutSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleStartVoyageClick = () => {
+    navigate('/signup'); // Navigasi ke halaman signup
   };
 
   return (
@@ -27,10 +32,10 @@ const Home = () => {
             >
               Home
             </Link>
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className={activePage === 'about' ? 'active' : ''}
-              onClick={handleAboutClick} 
+              onClick={handleAboutClick}
             >
               About
             </a>
@@ -52,10 +57,11 @@ const Home = () => {
         </h2>
         <p className="subtitle">With AI Curated Learning Path</p>
         <p className="no-degrees">No Degrees Needed</p>
-        <button className="start-button">Start Your Voyage</button>
+        <button onClick={handleStartVoyageClick} className="start-button">
+          Start Your Voyage
+        </button>
       </main>
 
-      {/* About Section moved here */}
       <div ref={aboutSectionRef} id="about" className="about-content">
         <h1 className="about-title">What is SkillVoy?</h1>
         <p className="about-description">

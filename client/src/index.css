@@ -13,7 +13,7 @@ body {
 }
 
 header {
-  background-color: #fff; 
+  background-color: #f7f7f8; 
   color: #000; 
 }
 
@@ -38,10 +38,26 @@ nav a {
   text-decoration: none; 
 }
 
+.login-button {
+  background-color: #32A8E6; 
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
 .hero {
   text-align: center;
   padding: 100px 0;
-  background-color: #f4f4f4;
+  background-color: #f7f7f8;
+}
+
+.start-button {
+  background-color: #32A8E6; 
+  color: white;
+  padding: 15px 80px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .nav-left {

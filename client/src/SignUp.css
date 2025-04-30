@@ -1,0 +1,271 @@
+body {
+  margin: 0;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background-color: #f8f8f8;
+}
+
+.container {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo-nav-group {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  margin: 0;
+  margin-right: 30px;
+}
+
+.left-nav {
+  display: flex;
+}
+
+.left-nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* New Style for Home Link */
+.home-link {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.home-link:hover {
+  color: #32A8E6;
+}
+
+.login-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.login-button:hover {
+  background-color: #32A8E6;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-button:active {
+  transform: translateY(-1px);
+}
+
+.login-button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 1%, transparent 1%) center/15000%;
+  opacity: 0;
+  transition: opacity 0.5s, background-size 0.5s;
+}
+
+.signup-login-button:active::after {
+  background-size: 100%;
+  opacity: 1;
+  transition: 0s;
+}
+
+.signup-main {
+  margin-top: 0px;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 25px;
+  margin-top: 15px;
+}
+
+.no-degrees {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.start-button {
+  margin-top: 20px;
+  padding: 15px 30px;  
+  border: 3px solid #32A8E6; 
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  font-size: 18px; 
+  font-weight: bold;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;  
+}
+
+.start-button:hover {
+  border-width: 4px;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.start-button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 1%, transparent 1%) center/15000%;
+  opacity: 0;
+  transition: opacity 0.5s, background-size 0.5s;
+}
+
+.start-button:active::after {
+  background-size: 100%;
+  opacity: 1;
+  transition: 0s;
+}
+
+.logo-image {
+  height: 45px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.highlight {
+  color: #32A8E6; 
+}
+
+/* CSS for sign up page form*/
+/* Add to your App.css */
+
+.signup-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center form horizontally */
+  padding: 40px 20px;
+}
+
+.signup-title {
+  margin-bottom: 30px;
+  font-size: 2em; /* Adjust as needed */
+  color: #000000; /* Adjust as needed */
+}
+
+.signup-form {
+  width: 100%;
+  max-width: 500px; /* Control maximum form width */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form groups */
+}
+
+.form-row {
+  display: flex;
+  gap: 15px; /* Space between items in a row */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group-half {
+  flex: 1; /* Make half-width groups share space */
+  min-width: 0; /* Prevent overflow issues with flex */
+}
+
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #555; /* Adjust as needed */
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  width: 100%; /* Make inputs fill their container */
+  box-sizing: border-box; /* Include padding/border in width */
+}
+
+.form-group select[disabled] {
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+.submit-button.next-button {
+  background-color: #32A8E6; /* Example blue color */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-top: 15px; /* Add some space above the button */
+  align-self: center; /* Center button if form isn't full width */
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.submit-button.next-button:hover {
+  background-color: #32A8E6;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button.next-button:active {
+  transform: translateY(-1px);
+}
+
+/* Basic Responsive Adjustment */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column; /* Stack name fields on smaller screens */
+  }
+  .signup-form {
+     max-width: 90%;
+  }
+}

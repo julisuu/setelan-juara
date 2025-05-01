@@ -14,17 +14,16 @@
 
 .my-courses-header {
   position: fixed; /* Membuat header tetap di atas */
-  top: 0;        /* Menempelkan ke bagian paling atas */
-  left: 0;       /* Menempelkan ke sisi kiri */
+  top: 0;       /* Menempelkan ke bagian paling atas */
+  left: 0;      /* Menempelkan ke sisi kiri */
   width: 100%;    /* Membuat header selebar layar */
-  background-color: white; /* Atau warna latar belakang header Anda */
   padding: 10px 20px; /* Sesuaikan padding sesuai kebutuhan */
   z-index: 1000;     /* Memastikan header berada di atas konten lain */
   /* Hapus atau komentari baris box-shadow berikut jika ada */
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   border-bottom: none; /* Pastikan tidak ada border bawah */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Ubah menjadi flex-start */
   align-items: center;
   margin-top: 10px;
 }
@@ -32,7 +31,7 @@
 .logo-nav-group {
   display: flex;
   align-items: center;
-  width: auto
+  width: auto; /* Biarkan lebarnya menyesuaikan konten */
 }
 
 .logo-image {
@@ -58,6 +57,7 @@
 .user-info {
   display: flex;
   align-items: center;
+  margin-left: auto; /* Tambahkan ini untuk mendorong user-info ke kanan */
 }
 
 .user-icon {
@@ -67,8 +67,8 @@
 
 .my-courses-main {
   padding-top: 60px; /* Sesuaikan dengan tinggi header Anda (misalnya, tinggi padding atas + tinggi header) */
-  padding: 20px;     /* Padding untuk konten utama */
-  flex: 1;          /* Membuat main mengisi sisa ruang */
+  padding: 20px;    /* Padding untuk konten utama */
+  flex: 1;        /* Membuat main mengisi sisa ruang */
 }
 
 .my-courses-title {
@@ -171,7 +171,7 @@
 
   .left-nav-link {
     font-size: 14px;
-    margin-left: 10px;
+    margin-left: 0px;
   }
 
   .user-info span {

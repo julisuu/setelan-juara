@@ -156,3 +156,267 @@ body {
   color: #333;
   margin-bottom: 20px;
 }
+
+/* About section styles - menggunakan prefix 'sv-' (SkillVoy) untuk mencegah tabrakan dengan class lain */
+
+.sv-about-section {
+  padding: 4rem 2rem;
+  background-color: #f8f9fa;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sv-about-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #000;
+  margin-bottom: 3rem;
+  margin-top: 150px;
+  position: relative;
+}
+
+.sv-about-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: #3498db;
+  border-radius: 2px;
+}
+
+.sv-about-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.sv-about-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex: 1;
+  min-width: 300px;
+  max-width: 360px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sv-about-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.sv-about-card-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.sv-about-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.sv-about-card:hover .sv-about-card-image {
+  transform: scale(1.05);
+}
+
+.sv-about-card-title {
+  padding: 1.5rem 1.5rem 0.5rem;
+  font-size: 1.5rem;
+  color: #2c3e50;
+  text-align: center;
+  position: relative;
+}
+
+.sv-about-card-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background-color: #3498db;
+  border-radius: 1.5px;
+}
+
+.sv-about-card-description {
+  padding: 1rem 1.5rem 2rem;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Media queries untuk responsive design */
+@media (max-width: 992px) {
+  .sv-about-cards {
+    gap: 2rem;
+  }
+  
+  .sv-about-card {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sv-about-section {
+    padding: 3rem 1.5rem;
+  }
+  
+  .sv-about-heading {
+    font-size: 2.2rem;
+  }
+  
+  .sv-about-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .sv-about-card {
+    max-width: 450px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sv-about-section {
+    padding: 2rem 1rem;
+  }
+  
+  .sv-about-heading {
+    font-size: 2rem;
+  }
+  
+  .sv-about-card-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* CSS untuk bagian Explore courses by job function */
+/* Menggunakan prefix 'sv-job-' untuk mencegah tabrakan dengan class lain */
+
+.sv-job-categories-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 80px auto 0;
+  padding: 0 2rem;
+}
+
+.sv-job-categories-heading {
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.sv-job-categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.sv-job-category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #e6f3fa;
+  border-radius: 8px;
+  min-width: 140px;
+  flex: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.sv-job-category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sv-job-category-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+
+.sv-job-category-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  margin: 0;
+}
+
+.sv-job-category-subtitle {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Media queries untuk responsive design */
+@media (max-width: 992px) {
+  .sv-job-categories-container {
+    justify-content: center;
+  }
+  
+  .sv-job-category-card {
+    min-width: 160px;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sv-job-categories-heading {
+    text-align: center;
+  }
+  
+  .sv-job-categories-container {
+    gap: 12px;
+  }
+  
+  .sv-job-category-card {
+    min-width: 140px;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sv-job-categories-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .sv-job-category-card {
+    min-width: 120px;
+    max-width: 150px;
+    padding: 15px;
+  }
+  
+  .sv-job-category-icon {
+    width: 50px;
+    height: 50px;
+  }
+}

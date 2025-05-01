@@ -6,15 +6,7 @@ import Team from './pages/Team';
 import Result from './pages/Result';
 import SignUp from './pages/signup/';
 import SignUpTwo from './pages/SignUpTwo';
-
-const NotFound = () => {
-  return (
-    <div>
-      <h1>404 - Not Found</h1>
-      <p>Sorry, the page you're looking for doesn't exist.</p>
-    </div>
-  );
-};
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -26,6 +18,7 @@ function App() {
         <Route path="/result" element={<Result />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signuptwo" element={<SignUpTwo />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

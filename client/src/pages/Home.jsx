@@ -1,17 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../App.css';
-// Kita perlu mengimpor gambar untuk section about
-// Sebagai contoh, gunakan placeholder jika asset belum tersedia
-// import whatIsImg from '../assets/what-is.png';
-// import visionImg from '../assets/vision.png';
-// import missionImg from '../assets/mission.png';
+import {useLocation} from 'react-router-dom';
 
 const Home = () => {
   const [activePage, setActivePage] = useState('home');
   const aboutSectionRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleAboutClick = (e) => {
     e.preventDefault();
@@ -27,12 +24,12 @@ const Home = () => {
     navigate('/login'); // Navigasi ke halaman login
   };
 
-  // Placeholder untuk gambar jika belum ada asset
-  const placeholderImages = {
-    whatIs: "https://via.placeholder.com/300x200?text=What+Is+SkillVoy",
-    vision: "https://via.placeholder.com/300x200?text=Our+Vision",
-    mission: "https://via.placeholder.com/300x200?text=Our+Mission"
-  };
+  useEffect(() => {
+    // Check if the state indicates scrolling to the "About" section
+    if (location.state?.scrollToAbout) {
+      aboutSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [location]);
 
   return (
     <div className="container">
@@ -69,12 +66,12 @@ const Home = () => {
 
       <main className="main">
         <h2 className="title">
-          <span className="highlight">Voyage</span> To Your Dream Job
+          <span className="highlight">Voyage</span>  to Your Dream Job
         </h2>
-        <p className="subtitle">With AI Curated Learning Path</p>
-        <p className="no-degrees">No Degrees Needed</p>
+        <p className="subtitle">Through AI-Personalized Learning Paths To Real Careers</p>
+        <p className="no-degrees">No Formal Degree Required</p>
         <button onClick={handleStartVoyageClick} className="start-button">
-          Start Your Voyage
+          Start Your Journey
         </button>
       </main>
 
@@ -84,55 +81,29 @@ const Home = () => {
         <div className="sv-about-cards">
           {/* What Is SkillVoy Card */}
           <div className="sv-about-card">
-            <div className="sv-about-card-image-container">
-              {/* Gunakan img import jika sudah ada, atau placeholder */}
-              <img 
-                src={placeholderImages.whatIs} 
-                alt="What Is SkillVoy" 
-                className="sv-about-card-image" 
-              />
-            </div>
             <h2 className="sv-about-card-title">What is SkillVoy?</h2>
             <p className="sv-about-card-description">
-              SkillVoy is an innovative platform designed to help you navigate your career journey
-              without the need for traditional degrees. Our AI-powered system curates personalized
-              learning paths tailored to your dream job, providing you with the exact skills and
-              knowledge you need to succeed.
+            SkillVoy is an AI-powered learning platform built to create equal job 
+            opportunities for everyone — regardless of their education level or 
+            socio-economic background.
             </p>
           </div>
 
           {/* Vision Card */}
           <div className="sv-about-card">
-            <div className="sv-about-card-image-container">
-              <img 
-                src={placeholderImages.vision} 
-                alt="Our Vision" 
-                className="sv-about-card-image" 
-              />
-            </div>
             <h2 className="sv-about-card-title">Our Vision</h2>
             <p className="sv-about-card-description">
-              We envision a world where career opportunities are accessible to everyone, regardless of their educational background. 
-              SkillVoy aims to bridge the gap between talent and industry by focusing on skills-based qualifications rather than 
-              traditional credentials, creating a more inclusive and dynamic workforce.
+            A world where anyone, from any background, can unlock career opportunities 
+            through accessible, practical learning.
             </p>
           </div>
 
           {/* Mission Card */}
           <div className="sv-about-card">
-            <div className="sv-about-card-image-container">
-              <img 
-                src={placeholderImages.mission} 
-                alt="Our Mission" 
-                className="sv-about-card-image" 
-              />
-            </div>
             <h2 className="sv-about-card-title">Our Mission</h2>
             <p className="sv-about-card-description">
-              Our mission is to democratize career advancement by providing accessible, 
-              personalized learning paths for everyone. We're committed to helping individuals 
-              discover their potential, develop job-ready skills, and connect with opportunities 
-              that match their abilities and aspirations.
+            To create equal access to careers by removing barriers like high educational 
+            cost, limited access to institutions, and outdated hiring standards.
             </p>
           </div>
         </div>

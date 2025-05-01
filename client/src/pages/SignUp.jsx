@@ -25,23 +25,41 @@ const SignUp = () => {
         'MY': ['Durian Runtuh', 'Johor', 'Kuala Lumpur'],
     };
 
+    // Handle form submission
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Form Submitted:', {
-            firstName, lastName, birthdate, email, password, country, city,
-        });
-        // TODO: Add actual submission logic here (e.g., API call)
-        // alert('Sign up data logged to console. Implement API call next.');
-        navigate('/signuptwo'); // Navigasi ke SignUpTwo
+
+        // Validate required fields
+        if (!firstName || !lastName || !birthdate || !email || !password || !country || !city) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+
+        // Save personal information to localStorage
+        const info = {
+            firstName,
+            lastName,
+            birthdate,
+            email,
+            password,
+            country,
+            city,
+        };
+        localStorage.setItem('personalInfo', JSON.stringify(info));
+
+        // Navigate to the next step
+        navigate('/signuptwo');
     };
 
+    // Handle country selection change
     const handleCountryChange = (e) => {
         setCountry(e.target.value);
-        setCity('');
+        setCity(''); // Reset city when country changes
     };
 
     return (
         <div className="container">
+            {/* Header Section */}
             <header className="header">
                 <div className="logo-nav-group">
                     <img src={logo} alt="SkillVoy Logo" className="logo-image" />
@@ -54,9 +72,11 @@ const SignUp = () => {
                 <button className="login-button" onClick={() => alert('Navigate to Login page')}>Login</button>
             </header>
 
+            {/* Main Form Section */}
             <main className="main signup-main">
                 <h2 className="signup-title">Sign up</h2>
                 <form onSubmit={handleSubmit} className="signup-form">
+                    {/* First Name and Last Name */}
                     <div className="form-row">
                         <div className="form-group form-group-half">
                             <label htmlFor="firstName">First name</label>
@@ -82,6 +102,7 @@ const SignUp = () => {
                         </div>
                     </div>
 
+                    {/* Birthdate */}
                     <div className="form-group">
                         <label htmlFor="birthdate">Birthdate</label>
                         <input
@@ -94,6 +115,7 @@ const SignUp = () => {
                         />
                     </div>
 
+                    {/* Email */}
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input
@@ -106,6 +128,7 @@ const SignUp = () => {
                         />
                     </div>
 
+                    {/* Password */}
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input
@@ -119,6 +142,7 @@ const SignUp = () => {
                         />
                     </div>
 
+                    {/* Country Selection */}
                     <div className="form-group">
                         <label htmlFor="country">Select Country</label>
                         <select
@@ -135,6 +159,7 @@ const SignUp = () => {
                         </select>
                     </div>
 
+                    {/* City Selection */}
                     <div className="form-group">
                         <label htmlFor="city">Select City</label>
                         <select
@@ -143,7 +168,7 @@ const SignUp = () => {
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
                             required
-                            disabled={!country}
+                            disabled={!country} // Disable if no country is selected
                         >
                             <option value="" disabled>-- Select City --</option>
                             {country && citiesByCountry[country] && citiesByCountry[country].map(cityName => (
@@ -152,7 +177,12 @@ const SignUp = () => {
                         </select>
                     </div>
 
-                    <button type="submit" className="submit-button next-button">
+                    {/* Submit Button */}
+                    <button
+                        type="submit"
+                        className="submit-button next-button"
+                        disabled={!firstName || !lastName || !birthdate || !email || !password || !country || !city} // Disable if fields are incomplete
+                    >
                         Next
                     </button>
                 </form>

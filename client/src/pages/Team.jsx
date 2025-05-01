@@ -24,7 +24,7 @@ const Team = () => {
     {
       id: 3,
       name: 'Salsabila Salimah',
-      role: 'UI/UX Enthusiast',
+      role: 'UI/UX Designer',
       description: 'Undergraduate Information Systems Student at Universitas Indonesia',
       image: 'https://csui24.vercel.app/_next/image?url=%2Fimages%2Fsalsabila-salimah.jpg&w=1920&q=75'
     }
@@ -32,20 +32,27 @@ const Team = () => {
 
   return (
     <div className="container">
-      {/* Header dengan logo persis seperti di Home */}
       <header className="header">
         <div className="logo-nav-group">
           <img src={logo} alt="SkillVoy Logo" className="logo-image" />
           <h1 className="logo-text">SkillVoy</h1>
           <nav className="left-nav">
-            <a href="/">Home</a>
+            <a href="/" onClick={() => navigate('/')}>Home</a>
+            <a
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/', { state: { scrollToAbout: true } }); // Pass state to scroll to "About"
+              }}
+            >
+              About
+            </a>
             <a href="#team" className="active">Our Team</a>
           </nav>
         </div>
         <button className="login-button">Login</button>
       </header>
 
-      {/* Konten Team (tetap sama) */}
       <main className="team-main">
         <h1 className="team-title">Meet Our Team</h1>
         <div className="team-grid">

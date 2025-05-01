@@ -25,7 +25,7 @@
   display: flex;
   justify-content: flex-start; /* Ubah menjadi flex-start */
   align-items: center;
-  margin-top: 10px;
+
 }
 
 .logo-nav-group {
@@ -66,10 +66,15 @@
 }
 
 .my-courses-main {
-  padding-top: 60px; /* Sesuaikan dengan tinggi header Anda (misalnya, tinggi padding atas + tinggi header) */
-  padding: 20px;    /* Padding untuk konten utama */
-  flex: 1;        /* Membuat main mengisi sisa ruang */
+  margin-top: 75px; /* Adjust this value to create space below the header */
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: flex-start; /* Keep content aligned to the top */
 }
+
 
 .my-courses-title {
   font-size: 32px;

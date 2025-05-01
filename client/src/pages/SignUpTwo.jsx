@@ -25,6 +25,7 @@ const SignUpTwo = () => {
         { value: 'doctorate', label: 'Doctorate' },
     ];
 
+    // Validate form inputs
     const validateForm = () => {
         let errors = {};
         if (!dreamJob.trim()) errors.dreamJob = "Dream job is required";
@@ -34,21 +35,51 @@ const SignUpTwo = () => {
         return Object.keys(errors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    // Handle form submission
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (validateForm()) {
-            console.log('Form Submitted:', {
-                dreamJob,
-                employmentType,
-                educationLevel,
+        if (!validateForm()) return;
+
+        try {
+            // Retrieve personal information from localStorage
+            const personalInfo = JSON.parse(localStorage.getItem('personalInfo'));
+            if (!personalInfo) {
+                alert('Personal information is missing. Please start from the signup page.');
+                navigate('/signup');
+                return;
+            }
+
+            // Send data to the backend
+            const response = await fetch('http://localhost:8080/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...personalInfo,
+                    job: dreamJob,
+                    jobType: employmentType,
+                    education: educationLevel,
+                }),
             });
-            // alert('Form data logged to console.');   <-- Hapus alert ini
-            navigate('/result');   // Navigasi ke /result
+
+            const data = await response.json();
+            if (response.ok) {
+                // Save token to localStorage
+                localStorage.setItem('token', data.token);
+
+                // Redirect to the result page
+                navigate('/result');
+            } else {
+                alert(data.error); // Show backend error
+            }
+        } catch (err) {
+            console.error('Signup error:', err);
+            alert('An error occurred. Please try again later.');
         }
     };
 
     return (
         <div className="container">
+            {/* Header Section */}
             <header className="header">
                 <div className="logo-nav-group">
                     <img src={logo} alt="SkillVoy Logo" className="logo-image" />
@@ -61,11 +92,11 @@ const SignUpTwo = () => {
                 <button className="login-button">Login</button>
             </header>
 
+            {/* Main Form Section */}
             <main className="main form-page">
-                <h1 className="title">
-                    Start Your Voyage!
-                </h1>
+                <h1 className="title">Start Your Voyage!</h1>
                 <form onSubmit={handleSubmit} className="voyage-form">
+                    {/* Dream Job Input */}
                     <div className="form-group">
                         <label htmlFor="dreamJob">What's your dream job?</label>
                         <input
@@ -73,18 +104,17 @@ const SignUpTwo = () => {
                             id="dreamJob"
                             value={dreamJob}
                             onChange={(e) => setDreamJob(e.target.value)}
-                            required
                         />
                         {formErrors.dreamJob && <p className="form-error">{formErrors.dreamJob}</p>}
                     </div>
 
+                    {/* Employment Type Dropdown */}
                     <div className="form-group">
                         <label htmlFor="employmentType">Full Time / Part Time</label>
                         <select
                             id="employmentType"
                             value={employmentType}
                             onChange={(e) => setEmploymentType(e.target.value)}
-                            required
                         >
                             {employmentOptions.map((option) => (
                                 <option key={option.value} value={option.value}>
@@ -95,13 +125,13 @@ const SignUpTwo = () => {
                         {formErrors.employmentType && <p className="form-error">{formErrors.employmentType}</p>}
                     </div>
 
+                    {/* Education Level Dropdown */}
                     <div className="form-group">
                         <label htmlFor="educationLevel">Education</label>
                         <select
                             id="educationLevel"
                             value={educationLevel}
                             onChange={(e) => setEducationLevel(e.target.value)}
-                            required
                         >
                             {educationOptions.map((option) => (
                                 <option key={option.value} value={option.value}>
@@ -112,6 +142,7 @@ const SignUpTwo = () => {
                         {formErrors.educationLevel && <p className="form-error">{formErrors.educationLevel}</p>}
                     </div>
 
+                    {/* Submit Button */}
                     <button type="submit" className="submit-button">
                         Submit
                     </button>

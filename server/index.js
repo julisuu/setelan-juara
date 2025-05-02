@@ -29,11 +29,11 @@ const results = new Map(); // Store AI outputs
 let quickSignupResult = null; // Variable to store the quick-signup output
 
 // Serve static files from the Vite build
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  });
 
 // Sign up
 app.post('/api/signup', async (req, res) => {

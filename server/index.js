@@ -4,6 +4,8 @@ import cors from 'cors';
 import { GoogleGenAI } from "@google/genai";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
@@ -18,10 +20,20 @@ app.use(cors({
     origin: 'http://localhost:5173', credentials: true 
 }));
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // In-memory storage for users and results
 const users = new Map(); // Store user information
 const results = new Map(); // Store AI outputs
 let quickSignupResult = null; // Variable to store the quick-signup output
+
+// Serve static files from the Vite build
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 // Sign up
 app.post('/api/signup', async (req, res) => {
@@ -80,10 +92,17 @@ app.post('/api/quick-signup', async (req, res) => {
     const { country, city, job, jobType, education, birthdate } = req.body;
 
     if (!job?.trim() || !jobType?.trim() || !education?.trim() || !birthdate?.trim()) {
-        return res.status(418).send({ error: 'All fields are required, including birthdate.' });
+        return res.status(418).send({ error: 'All fields are required' });
     }
 
-    const prompt = `Give learning path to work ${jobType} as a ${job} with ${education}. Give me a learning steps and the link to the free courses in each steps. two lines only for each steps. format: one line for short title and course name, another line MUST be the link to the course. each steps must have a course with link. the last step is for interview preparation. output only the steps and the links without number order and your yapping. each steps MUST have a link to a course or video. plain text.`;
+    const prompt = `Give learning path to work ${jobType} as a ${job} with ${education}. 
+    Give me a learning steps and the link to the free courses in each steps. 
+    Two lines only for each steps. 
+    Format: one line for short title and course name, another line MUST be the link to the course. 
+    Each steps must have a course with valid link. 
+    The last step is for interview preparation. 
+    Output only the steps and the links without number order and your yapping. 
+    Each steps MUST have a link to a course or video. plain text.`;
 
     try {
         const response = await ai.models.generateContent({

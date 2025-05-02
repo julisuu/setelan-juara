@@ -21,6 +21,7 @@ app.use(cors({
 // In-memory storage for users and results
 const users = new Map(); // Store user information
 const results = new Map(); // Store AI outputs
+let quickSignupResult = null; // Variable to store the quick-signup output
 
 // Sign up
 app.post('/api/signup', async (req, res) => {
@@ -74,6 +75,42 @@ app.post('/api/signup', async (req, res) => {
     }
 });
 
+// Alternative signup without user register
+app.post('/api/quick-signup', async (req, res) => {
+    const { country, city, job, jobType, education, birthdate } = req.body;
+
+    if (!job?.trim() || !jobType?.trim() || !education?.trim() || !birthdate?.trim()) {
+        return res.status(418).send({ error: 'All fields are required, including birthdate.' });
+    }
+
+    const prompt = `Give learning path to work ${jobType} as a ${job} with ${education}. Give me a learning steps and the link to the free courses in each steps. two lines only for each steps. format: one line for short title and course name, another line MUST be the link to the course. each steps must have a course with link. the last step is for interview preparation. output only the steps and the links without number order and your yapping. each steps MUST have a link to a course or video. plain text.`;
+
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: prompt,
+        });
+
+        const geminiResult = response.text;
+
+        // Store the result in the variable
+        quickSignupResult = {
+            country,
+            city,
+            job,
+            jobType,
+            education,
+            birthdate,
+            geminiResult,
+        };
+
+        res.json(quickSignupResult); // Send the result back to the client
+    } catch (err) {
+        console.error('Gemini or session error:', err);
+        res.status(500).send({ error: 'Failed to generate content or save user' });
+    }
+});
+
 // Login
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
@@ -107,6 +144,14 @@ app.get('/api/result', authMiddleware, (req, res) => {
     const user = users.get(req.email);
     if (!user) return res.sendStatus(404);
     res.json({ result: user.geminiResult, job: user.job }); // Include job in the response
+});
+
+// Get the quick-signup result
+app.get('/api/quick-signup-result', (req, res) => {
+    if (!quickSignupResult) {
+        return res.status(404).json({ error: 'No result found. Please complete the signup first.' });
+    }
+    res.json(quickSignupResult);
 });
 
 // Backend status

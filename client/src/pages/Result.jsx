@@ -12,41 +12,30 @@ const Result = () => {
   useEffect(() => {
     const fetchResult = async () => {
       try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          navigate('/login'); // Redirect to login if no token
-          return;
-        }
-
-        const response = await fetch('http://localhost:8080/api/result', {
+        const response = await fetch('http://localhost:8080/api/quick-signup-result', {
           method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
         });
-
+  
+        const data = await response.json();
+  
         if (response.ok) {
-          const data = await response.json();
-          // Split the result into paragraphs by \n\n, then split each paragraph into lines by \n
-          const formattedResult = data.result
-            .split('\n\n') // Split into paragraphs
-            .map(paragraph => paragraph.split('\n')); // Split each paragraph into lines
-          setGeminiResult(formattedResult);
-          setJobTitle(data.job); // Set the job title from the response
+          console.log('Result:', data);
+          setGeminiResult(data.geminiResult.split('\n\n').map(step => step.split('\n'))); // Parse the result into steps
+          setJobTitle(data.job); // Set the job title
         } else {
-          const errorData = await response.json();
-          setError(errorData.error || 'Failed to fetch result');
+          console.error('Error:', data.error);
+          setError(data.error); // Show error from the backend
         }
       } catch (err) {
         console.error('Error fetching result:', err);
-        setError('An error occurred while fetching the result.');
+        setError('An error occurred. Please try again later.');
       }
     };
-
+  
     fetchResult();
-  }, [navigate]);
-
+  }, []);
+  
   return (
     <div className="my-courses-container">
       <header className="my-courses-header">

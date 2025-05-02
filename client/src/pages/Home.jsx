@@ -17,7 +17,7 @@ const Home = () => {
   };
 
   const handleStartVoyageClick = () => {
-    navigate('/signup'); // Navigasi ke halaman signup
+    navigate('/start'); // Navigasi ke halaman signup
   };
 
   const handleLoginClick = () => {
@@ -61,12 +61,12 @@ const Home = () => {
             </Link>
           </nav>
         </div>
-        <button className="login-button" onClick={handleLoginClick}>Login</button>
+        <button className="login-button" onClick={() => navigate('/start')}>Get Started</button>
       </header>
 
       <main className="main">
         <h2 className="title">
-          <span className="highlight">Voyage</span>  to Your Dream Job
+          <span className="highlight">Voyage</span>  To Your Dream Job
         </h2>
         <p className="subtitle">Through AI-Personalized Learning Paths To Real Careers</p>
         <p className="no-degrees">No Formal Degree Required</p>

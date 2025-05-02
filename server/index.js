@@ -4,8 +4,6 @@ import cors from 'cors';
 import { GoogleGenAI } from "@google/genai";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 dotenv.config();
 
@@ -20,20 +18,11 @@ app.use(cors({
     origin: 'http://localhost:5173', credentials: true 
 }));
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 // In-memory storage for users and results
 const users = new Map(); // Store user information
 const results = new Map(); // Store AI outputs
 let quickSignupResult = null; // Variable to store the quick-signup output
 
-// Serve static files from the Vite build
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-  });
 
 // Sign up
 app.post('/api/signup', async (req, res) => {
